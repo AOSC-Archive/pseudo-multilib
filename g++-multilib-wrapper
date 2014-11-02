@@ -4,8 +4,8 @@ for i
 do
     if [ "x$i" = "x-m32" ]
     then
-        exec /opt/32/bin/g++ $*
+        exec /opt/32/bin/g++ "$@"
     fi
 done
 
-exec /usr/bin/g++ $*
+exec /usr/bin/g++ "$@"
