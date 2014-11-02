@@ -1,0 +1,18 @@
+#! /bin/bash
+# multilib-faker: emulates multilib compilers by selecting the right one.
+# This version supports single extra architecture.
+# As an aosc package, remember to make symlinks.
+# Environment Variables:
+# $0: the basename is the program to run.
+Program="$(basename "$0")"
+# Flag: target architecture flag, limited to only one.
+Flag="${Flag:--m32}"
+# Prefix: the prefix to the target compiler.
+Prefix=${Prefix:-/opt/32}
+# Almost nobody name their variables like this so we are safe from conflicts.
+
+for i in "$@"; do
+  [ "$i" == "$Flag" ] && exec "$Prefix/$Program" "$@"
+done
+
+exec "$program" "$@"
