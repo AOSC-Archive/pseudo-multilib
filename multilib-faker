@@ -11,8 +11,12 @@ Flag="${Flag:--m32}"
 Prefix=${Prefix:-/opt/32}
 # Almost nobody name their variables like this so we are safe from conflicts.
 
+# Deals with PATH
+PathFake="$(dirname "$0")"
+PATH=${PATH##PathFake}
+
 for i in "$@"; do
   [ "$i" == "$Flag" ] && exec "$Prefix/$Program" "$@"
 done
 
-exec "$program" "$@"
+exec "$Program" "$@"
